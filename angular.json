@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -82,10 +83,10 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-clip-rotate.css",
               "src/styles.css"
             ],
             "scripts": []

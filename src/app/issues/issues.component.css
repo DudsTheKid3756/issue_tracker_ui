@@ -1,0 +1,95 @@
+.button:disabled {
+  background-color: gray;
+  cursor: default;
+}
+
+.button:disabled:active {
+  transform: none;
+}
+
+.check {
+  display: inline-block;
+  margin-bottom: -3px;
+  position: sticky;
+  left: 74%;
+}
+
+.created {
+  font-size: 11px;
+  display: inline;
+  margin-left: 5px;
+}
+
+.comment {
+  border: 3px solid black;
+  border-right-width: 10px;
+  height: 5em;
+  padding: 5px;
+  margin: 8px;
+}
+
+.icon {
+  cursor: pointer;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.head {
+  position: sticky;
+  left: 100%;
+  bottom: 500%;
+}
+
+.headContainer {
+  margin-bottom: 10px;
+}
+
+.header {
+  margin: 5px;
+  display: inline;
+}
+
+.itemContainer {
+  display: inline;
+}
+
+@media screen and (max-width: 45em) {
+  .head {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+  }
+  .headContainer {
+    display: inline;
+  }
+}
+
+.noIssues {
+  margin-left: 5px;
+}
+
+.spacer {
+  border-top: 3px solid black;
+  padding: 5px;
+  margin: 8px;
+}
+
+.spinner {
+  display: block;
+  margin: 0 auto;
+}
+
+.spinnerContainer {
+  vertical-align: middle;
+}
+
+.title {
+  display: inline;
+  margin-left: 5px;
+}
+
+.titleContainer {
+  margin-left: 5px;
+  width: 700px;
+}

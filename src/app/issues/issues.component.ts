@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Issue } from "src/models/issue";
 import { IssuesService } from "./issues.service";
 import { AppConstants } from "../constants";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: "app-issues",
@@ -11,21 +12,20 @@ import { AppConstants } from "../constants";
 export class IssuesComponent implements OnInit {
   title = "Issue Tracker";
   _service: IssuesService;
+  _apiError: string;
 
   issues: Issue[] = [];
   isLoading: boolean = false;
-  isDisabled: boolean = true;
   isDeleted: boolean = false;
   showComment: boolean[] = [];
 
   @Input() id!: number;
-  _apiError: string;
 
   toggleShowComment = (id: number) => {
     this.showComment[id] = !this.showComment[id];
   };
 
-  constructor(service: IssuesService) {
+  constructor(service: IssuesService, private spinner: NgxSpinnerService) {
     this._service = service;
     this._apiError = AppConstants.APIError;
   }
@@ -36,6 +36,7 @@ export class IssuesComponent implements OnInit {
     }
 
     this.isLoading = true;
+    this.spinner.show();
     setTimeout(() => {
       this._service.getIssues().subscribe((response) => {
         if (!response.ok) {
@@ -45,6 +46,7 @@ export class IssuesComponent implements OnInit {
         this.issues = _body;
       });
       this.isLoading = false;
+      this.spinner.hide();
     }, 3000);
   }
 }
