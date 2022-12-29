@@ -27,7 +27,11 @@ export class IssuesComponent implements OnInit {
     this.showComment[id] = !this.showComment[id];
   };
 
-  constructor(storage: Storage, service: IssuesService, private spinner: NgxSpinnerService) {
+  constructor(
+    storage: Storage,
+    service: IssuesService,
+    private spinner: NgxSpinnerService
+  ) {
     this._storage = storage;
     this._service = service;
     this._apiError = AppConstants.APIError;
