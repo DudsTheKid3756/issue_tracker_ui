@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Issue } from "../../models/issue";
-import { HttpHelper } from "../../helpers/HttpHelper";
+// import { HttpHelper } from "../../helpers/HttpHelper";
 import { HttpClient } from "@angular/common/http";
 import { AppConstants } from "../constants";
 
@@ -11,7 +11,7 @@ export class IssuesService {
   _fullPath: string;
 
   constructor(private http: HttpClient) {
-    this._baseURL = AppConstants.baseURLs.dotnet;
+    this._baseURL = AppConstants.baseURLs["dotnet"];
     this._path = AppConstants.path;
     this._fullPath = `${this._baseURL}/${this._path}`;
   }

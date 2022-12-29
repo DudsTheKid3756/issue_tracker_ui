@@ -3,6 +3,7 @@ import { Issue } from "src/models/issue";
 import { IssuesService } from "./issues.service";
 import { AppConstants } from "../constants";
 import { NgxSpinnerService } from "ngx-spinner";
+import { Storage } from "src/helpers/Storage";
 
 @Component({
   selector: "app-issues",
@@ -11,6 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class IssuesComponent implements OnInit {
   title = "Issue Tracker";
+  _storage: Storage;
   _service: IssuesService;
   _apiError: string;
 
@@ -25,7 +27,8 @@ export class IssuesComponent implements OnInit {
     this.showComment[id] = !this.showComment[id];
   };
 
-  constructor(service: IssuesService, private spinner: NgxSpinnerService) {
+  constructor(storage: Storage, service: IssuesService, private spinner: NgxSpinnerService) {
+    this._storage = storage;
     this._service = service;
     this._apiError = AppConstants.APIError;
   }

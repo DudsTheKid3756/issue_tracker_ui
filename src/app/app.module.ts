@@ -8,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { IssuesService } from "./issues/issues.service";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Storage } from "src/helpers/Storage";
 
 @NgModule({
   declarations: [AppComponent, IssuesComponent],
@@ -19,7 +20,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     NgxSpinnerModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [IssuesService],
+  providers: [Storage, IssuesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
