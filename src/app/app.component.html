@@ -1,1 +1,10 @@
-<app-issues></app-issues>
+<context-provider
+  provide="apiError toggleApiPath toggleApiError"
+  [contextMap]="{
+    apiError: 'error',
+    toggleApiPath: 'togglePath',
+    toggleApiError: 'toggleError'
+  }"
+>
+  <app-issues></app-issues>
+</context-provider>

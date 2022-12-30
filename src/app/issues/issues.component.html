@@ -1,4 +1,7 @@
 <div class="page">
+  <context-consumer
+    consume="apiError toggleApiPath toggleApiError"
+  ></context-consumer>
   <div class="headContainer">
     <h1 class="header">{{ title }}</h1>
     <button class="button head" [disabled]="issues.length <= 0">
@@ -17,7 +20,7 @@
               class="icon"
               title="Issue comment"
               src="assets/svg/info.svg"
-              (click)="toggleShowComment(id)"
+              (click)="toggleCommentView(id)"
             />
             <span class="created">{{ issue.created }}</span>
             <img class="icon" title="Edit issue" src="assets/svg/pencil.svg" />
@@ -27,18 +30,36 @@
               src="assets/svg/trashcan.svg"
             />
           </div>
-          <p class="comment" *ngIf="showComment[id]">{{ issue.comment }}</p>
           <img
             class="check"
             title="Completed"
             *ngIf="!issue.isCompleted"
             src="assets/svg/check.svg"
           />
-          <h5 [ngStyle]="{ color: issue.color }">Color</h5>
+          <div
+            *ngIf="commentView[id]; then showComment; else hideComment"
+          ></div>
+          <ng-template #showComment>
+            <p class="comment" [ngStyle]="{ borderColor: issue.color }">
+              {{ issue.comment }}
+            </p>
+          </ng-template>
+          <ng-template #hideComment>
+            <p class="spacer" [ngStyle]="{ borderColor: issue.color }"></p>
+          </ng-template>
         </div>
       </div>
     </ng-template>
-    <ng-template class="noIssues" #noIssues> No issues to show </ng-template>
+    <ng-template #noIssues>
+      <div *ngIf="_apiError; then addNewIssues; else apiError"></div>
+
+      <ng-template class="noIssues" #apiError>{{
+        _apiErrorString
+      }}</ng-template>
+      <ng-template class="noIssues" #addNewIssues>
+        No issues to show. Add a new one!
+      </ng-template>
+    </ng-template>
   </ng-template>
   <ng-template class="spinnerContainer" #loading>
     <ngx-spinner
