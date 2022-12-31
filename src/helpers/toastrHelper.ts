@@ -9,7 +9,7 @@ export class ToastrHelper {
 
   toaster = (text: string, type: string) => {
     //@ts-ignore
-    this.toastr[type](text, {
+    this.toastr[type]("", text, {
       positionClass: "toast-top-right",
     });
   };

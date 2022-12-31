@@ -4,7 +4,7 @@ import { IssuesService } from "./issues.service";
 import { AppConstants } from "../constants";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Storage } from "src/helpers/storageHelper";
-import { ToastrHelper } from '../../helpers/toastrHelper';
+import { ToastrHelper } from "../../helpers/toastrHelper";
 
 @Component({
   selector: "app-issues",
@@ -50,19 +50,28 @@ export class IssuesComponent implements OnInit {
 
     this.isLoading = true;
     this.spinner.show();
-    setTimeout(() => {
-      this._service.getIssues().subscribe((response) => {
+    this._service.getIssues().subscribe({
+      next: (response) => {
         if (!response.ok) {
           this._apiError = true;
-          this._toastr.toaster(this._apiErrorString, "error");
           throw new Error(this._apiErrorString);
         }
-        const _body = response.body!;
-        this.issues = _body;
-      });
-      this._apiError = false;
-      this.isLoading = false;
-      this.spinner.hide();
-    }, 3000);
+        setTimeout(() => {
+          const _body = response.body!;
+          this.issues = _body;
+          this._apiError = false;
+          this.isLoading = false;
+          this.spinner.hide();
+        }, 3000);
+      },
+      error: () => {
+        !this._apiError
+          ? this._toastr.toaster(this._apiErrorString, "error")
+          : null;
+        this._apiError = false;
+        this.isLoading = false;
+        this.spinner.hide();
+      },
+    });
   }
 }

@@ -11,8 +11,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Storage } from "src/helpers/storageHelper";
 import { NgxContextModule } from "ngx-context";
 import { ToastrModule } from "ngx-toastr";
-import { ToastrHelper } from '../helpers/toastrHelper';
-import { NotificationComponent } from './notification/notification.component';
+import { ToastrHelper } from "../helpers/toastrHelper";
+import { NotificationComponent } from "./notification/notification.component";
 
 @NgModule({
   declarations: [AppComponent, IssuesComponent, NotificationComponent],
@@ -26,8 +26,8 @@ import { NotificationComponent } from './notification/notification.component';
     ToastrModule.forRoot({
       timeOut: 3000,
       autoDismiss: false,
-      progressBar: false,
-    })
+      progressBar: true,
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [Storage, ToastrHelper, IssuesService],
