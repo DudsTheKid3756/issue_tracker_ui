@@ -5,17 +5,26 @@ import { AppComponent } from "./app.component";
 import { IssuesComponent } from "./issues/issues.component";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
-import { IssuesService } from "./issues/issues.service";
+import { IssuesService } from "./services/issues.service";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { Storage } from "src/helpers/storageHelper";
+import { Storage } from "src/helpers/storage";
 import { NgxContextModule } from "ngx-context";
 import { ToastrModule } from "ngx-toastr";
-import { ToastrHelper } from "../helpers/toastrHelper";
+import { ToastrHelper } from "../helpers/toastr";
 import { NotificationComponent } from "./notification/notification.component";
+import { CreateIssueComponent } from "./create-issue/create-issue.component";
+import { UpdateIssueComponent } from "./update-issue/update-issue.component";
+import { HttpHelper } from '../helpers/http';
 
 @NgModule({
-  declarations: [AppComponent, IssuesComponent, NotificationComponent],
+  declarations: [
+    AppComponent,
+    IssuesComponent,
+    NotificationComponent,
+    CreateIssueComponent,
+    UpdateIssueComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([{ path: "", component: IssuesComponent }]),
@@ -30,7 +39,7 @@ import { NotificationComponent } from "./notification/notification.component";
     }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [Storage, ToastrHelper, IssuesService],
+  providers: [Storage, ToastrHelper, HttpHelper, IssuesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

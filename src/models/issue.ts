@@ -1,7 +1,7 @@
 import { Reminder } from "./reminder";
 
 export interface Issue {
-  id?: number;
+  id: number;
   title: string;
   comment: string;
   created: Date;  //review pipes

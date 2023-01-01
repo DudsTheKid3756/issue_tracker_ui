@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Storage } from "src/helpers/storageHelper";
+import { Storage } from "src/helpers/storage";
 
 @Component({
   selector: "app-root",
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleApiError = (bool: boolean) => (this.apiError = bool);
-  toggleApiPath = (event: { type: any; target: any; }) => {
+  toggleApiPath = (event: { type: any; target: any }) => {
     this.apiError = false;
     this.apiPath = event.target!.value;
     this._storage.storeItem("api", event.target!.value, "local");

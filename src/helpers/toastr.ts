@@ -1,7 +1,7 @@
 import { ToastrService } from "ngx-toastr";
 import { Injectable } from "@angular/core";
 import { NotificationComponent } from "src/app/notification/notification.component";
-import { jsonObj } from "src/app/@types/jsonObj";
+import { jsonObj } from "src/@types/jsonObj";
 
 @Injectable()
 export class ToastrHelper {

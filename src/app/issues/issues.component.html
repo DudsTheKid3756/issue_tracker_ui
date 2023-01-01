@@ -22,18 +22,18 @@
     </ng-template>
   </div>
   <div class="issues">
-    <ng-template #loaded>
-      <div *ngIf="issues.length > 0; then issuesList; else noIssues"></div>
-      <ng-template #issuesList>
+  <ng-template #loaded>
+    <div *ngIf="issues.length > 0; then issuesList; else noIssues"></div>
+    <ng-template #issuesList>
         <span *ngFor="let issue of issues">
-          <div class="item" [id]="issues.indexOf(issue)">
+          <div class="item">
             <div class="titleContainer">
               <h3 class="title">{{ issue.title }}</h3>
               <img
                 class="icon"
                 title="Issue comment"
                 src="assets/svg/info.svg"
-                (click)="toggleCommentView(id)"
+                (click)="toggleCommentView(issue.id)"
               />
               <span class="created">{{ issue.created }}</span>
               <img
@@ -45,6 +45,7 @@
                 class="icon"
                 title="Delete issue"
                 src="assets/svg/trashcan.svg"
+                (click)="handleDelete(issue.id)"
               />
               <img
                 class="check"
@@ -54,7 +55,7 @@
               />
             </div>
             <div
-              *ngIf="commentView[id]; then showComment; else hideComment"
+              *ngIf="commentView[issue.id]; then showComment; else hideComment"
             ></div>
             <ng-template #showComment>
               <p class="comment" [ngStyle]="{ borderColor: issue.color }">
@@ -69,9 +70,9 @@
       </ng-template>
       <ng-template #noIssues>
         <div>
-          <div *ngIf="_apiError; then addNewIssues; else apiError"></div>
+          <div *ngIf="apiError; then addNewIssues; else apiError"></div>
           <ng-template class="noIssues" #apiError>{{
-            _apiErrorString
+            apiErrorString
           }}</ng-template>
           <ng-template class="noIssues" #addNewIssues>
             No issues to show. Add a new one!

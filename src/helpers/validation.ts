@@ -1,4 +1,6 @@
 import { AppConstants } from "../app/constants";
+import { jsonObj } from '../@types/jsonObj';
+
 export class Validation {
   _regex: RegExp;
   _blank: string;
@@ -10,8 +12,8 @@ export class Validation {
     this._invalid = AppConstants.invalidError;
   }
 
-  validateStrings = (obj: { [field: string]: any }) => {
-    const errors: { [field: string]: any } = {};
+  validateStrings = (obj: jsonObj) => {
+    const errors: jsonObj = {};
     Object.keys(obj).forEach((key: string) => {
       const value: string = obj[key];
       const formattedField: string = key[0].toUpperCase() + key.substring(1, key.length);

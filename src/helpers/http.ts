@@ -1,23 +1,18 @@
-import { Issue } from '../models/issue';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { jsonObj } from '../@types/jsonObj';
 
+@Injectable()
 export class HttpHelper {
-  constructor(public http: HttpClient) {}
+  options = {
+    observe: "response" as const,
+    responseType: "json" as const,
+  };
 
-  Get() {
-    let _body: Issue[] = [];
-    this.http
-      .get<Issue[]>("https://localhost:7082/issue", {
-        observe: "response",
-        responseType: "json",
-      })
-      .subscribe((response) => {
-        if (!response.ok) {
-          throw new Error("oooooooops");
-        }
-        _body = response.body!;
-      });
-    
-    return _body;
-  }
+  constructor(private http: HttpClient) {}
+
+  httpHelper = (url: string, method: string, body?: any) => {
+    // @ts-ignore
+    return this.http[method.toLowerCase()](url, {...this.options, body: body ?? null});
+  };
 }

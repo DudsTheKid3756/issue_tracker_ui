@@ -1,4 +1,4 @@
-import { jsonObj } from "../app/@types/jsonObj";
+import { jsonObj } from "../@types/jsonObj";
 
 export class Storage {
   storeItem = (
