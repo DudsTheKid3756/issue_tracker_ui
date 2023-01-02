@@ -1,5 +1,3 @@
-import { Reminder } from "../models/reminder";
-import { Time } from "@angular/common";
 export class AppConstants {
   public static get baseURLs(): { [x: string]: string } {
     return { dotnet: "https://localhost:7082", java: "http://localhost:8080" };

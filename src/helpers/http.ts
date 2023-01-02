@@ -1,6 +1,5 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { jsonObj } from '../@types/jsonObj';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class HttpHelper {
@@ -13,6 +12,9 @@ export class HttpHelper {
 
   httpHelper = (url: string, method: string, body?: any) => {
     // @ts-ignore
-    return this.http[method.toLowerCase()](url, {...this.options, body: body ?? null});
+    return this.http[method.toLowerCase()](url, {
+      ...this.options,
+      body: body ?? null,
+    });
   };
 }
