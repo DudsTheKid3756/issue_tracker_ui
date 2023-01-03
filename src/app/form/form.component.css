@@ -1,0 +1,46 @@
+.errorBase {
+  color: red;
+  margin-left: 10px;
+}
+
+.errBorder[type="text"] {
+  border-color: red;
+}
+
+.errorContainer {
+  display: inline;
+}
+
+.formLabel {
+  margin-left: 5px;
+}
+
+.formInput {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.formInput[type="text"] {
+  margin-bottom: 10px;
+  width: 43%;
+}
+
+.formInput[type="text"]:focus {
+  border: 3px solid #555;
+}
+
+.normErr {
+  display: inline;
+}
+
+.textAreaErrBorder {
+  border: 2px solid red;
+}
+
+.textAreaErr {
+  display: inline-table;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  position: absolute;
+  word-break: break-all;
+}

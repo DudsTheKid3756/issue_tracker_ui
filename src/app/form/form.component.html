@@ -1,0 +1,48 @@
+<div>
+  <form class="formComponent">
+    <label [for]="field" class="formLabel">{{ label }}</label>
+    <div *ngIf="type == 'text'"><br /></div>
+    <div *ngIf="!isMultiline; then inputField; else textAreaField"></div>
+    <ng-template #inputField>
+      <div>
+        <input
+          [class]="['formInput', errLength != 0 ? 'errBorder' : '']"
+          [id]="field"
+          [name]="field"
+          [type]="type"
+          [placeholder]="placeholder"
+          [defaultValue]="values[field]"
+          [checked]="values[field]"
+          [min]="min"
+        />
+        <div class="errorContainer">
+          <div *ngIf="type == 'text' && errLength != 0">
+            <p class="errorBase normError">
+              {{ errors[field] }}
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </ng-template>
+    <ng-template #textAreaField>
+      <div>
+        <textarea
+          [class]="errLength != 0 ? 'textAreaErrBorder' : ''"
+          [id]="field"
+          [name]="field"
+          [placeholder]="placeholder"
+          [defaultValue]="values[field]"
+        ></textarea>
+        <div class="errorContainer">
+          <div *ngIf="type == 'text' && errLength != 0">
+            <p class="errorBase textAreaErr">
+              {{ errors[field] }}
+            </p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </ng-template>
+  </form>
+</div>

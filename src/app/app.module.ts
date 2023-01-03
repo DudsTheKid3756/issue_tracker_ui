@@ -15,7 +15,14 @@ import { ToastrHelper } from "../helpers/toastr";
 import { NotificationComponent } from "./notification/notification.component";
 import { CreateIssueComponent } from "./create-issue/create-issue.component";
 import { UpdateIssueComponent } from "./update-issue/update-issue.component";
-import { HttpHelper } from '../helpers/http';
+import { HttpHelper } from "../helpers/http";
+import { FormComponent } from './form/form.component';
+
+const routes = [
+  { path: "", component: IssuesComponent },
+  { path: "create", component: CreateIssueComponent },
+  { path: "update/:id", component: UpdateIssueComponent },
+];
 
 @NgModule({
   declarations: [
@@ -24,10 +31,11 @@ import { HttpHelper } from '../helpers/http';
     NotificationComponent,
     CreateIssueComponent,
     UpdateIssueComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([{ path: "", component: IssuesComponent }]),
+    RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,

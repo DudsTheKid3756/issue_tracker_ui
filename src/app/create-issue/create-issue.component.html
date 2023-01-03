@@ -1,1 +1,32 @@
-<p>create-issue works!</p>
+<div class="formContainer">
+    <h1 class="formHeader">New Issue</h1>
+    <div class="textInputs">
+        <app-form></app-form>
+    </div>
+    <div class="checkboxInput1"></div>
+     | 
+    <label class="label">Color</label>
+    <img class="icon" src="assets/svg/paintbrush.svg" />
+    <div class="buttonDiv">
+        <button class="button cancel" (click)="handleCancel()">Cancel</button>
+        <button class="button submit" type="submit">Submit</button>
+    </div>
+    <div *ngIf="issue?.hasReminder; then reminder"></div>
+    <ng-template #reminder>
+        <div class="reminderContainer">
+            <h3 class="formHeader">Reminder</h3>
+            <span class="formLabel">
+                Date: 
+                <br />
+            </span>
+            <span class="formLabel">
+                Time: 
+                <br />
+            </span>
+            <span class="formLabel">
+                Alert: 
+                <br />
+            </span>
+        </div>
+    </ng-template>
+</div>

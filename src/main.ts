@@ -1,12 +1,12 @@
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 import { AppModule } from "./app/app.module";
+import { jsonObj } from './@types/jsonObj';
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .then((ref) => {
-    type obj = { [x: string]: any };
-    var winRef = window as obj["ngRef"];
+    var winRef = window as jsonObj["ngRef"];
 
     if (winRef) {
       winRef["destroy"];

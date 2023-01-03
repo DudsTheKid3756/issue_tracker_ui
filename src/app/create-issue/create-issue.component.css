@@ -1,0 +1,68 @@
+.buttonDiv {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cancel {
+  background-color: rgb(186, 14, 14);
+  border-color: black;
+}
+
+.cancel:hover {
+  background-color: rgb(116, 6, 6);
+}
+
+.checkboxInput1 {
+  display: inline-block;
+}
+
+.checkboxInput2 {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.formContainer {
+  display: inline-block;
+  width: 75%;
+}
+
+.formHeader {
+  margin: 5px;
+}
+
+.formLabel {
+  margin-left: 5px;
+}
+
+.icon {
+  cursor: pointer;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.label {
+  margin-left: 5px;
+}
+
+.reminderContainer {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 0px 5px 5px 5px;
+  margin-top: 5px;
+  width: 65%;
+}
+
+.reminderInput {
+  padding: 1px;
+  width: 75%;
+}
+
+.submit {
+  background-color: rgb(15, 174, 15);
+  border-color: black;
+}
+
+.submit:hover {
+  background-color: rgb(6, 78, 6);
+}

@@ -33,7 +33,7 @@ export class IssuesService {
     this.apiErrorString = AppConstants.APIError;
 
     this.componentIssues = new BehaviorSubject<Issue[]>([]);
-    this.componentApiError = new BehaviorSubject<boolean>(false);
+    this.componentApiError = new BehaviorSubject<boolean>(true);
     this.componentIsLoading = new BehaviorSubject<boolean>(false);
   }
 
@@ -68,8 +68,9 @@ export class IssuesService {
           throw new Error(this.apiErrorString);
         }
         setTimeout(() => {
-          const _body = response.body!;
+          const _body = response.body!;          
           this.setComponentIssues(_body);
+          this.setComponentApiError(false);
           this.setComponentIsLoading(false);
           this.spinner.hide();
         }, 3000);
@@ -77,6 +78,7 @@ export class IssuesService {
       error: (err: any) => {
         this.setComponentApiError(true);
         this.setComponentIsLoading(false);
+
         this.componentApiError
           ? this.toastr.toaster(this.apiErrorString, "error")
           : null;
@@ -94,8 +96,7 @@ export class IssuesService {
           if (!response.ok) {
             throw new Error(this.apiErrorString);
           }
-          window.location.reload();
-          return response;
+          this.getIssues();
         },
         error: (err: any) => console.error(err),
       });
