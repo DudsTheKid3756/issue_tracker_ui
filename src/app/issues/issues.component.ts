@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Issue } from "src/models/issue";
 import { IssuesService } from "../services/issues.service";
 import { AppConstants } from "../constants";
@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
   templateUrl: "./issues.component.html",
   styleUrls: ["./issues.component.css"],
 })
-export class IssuesComponent implements OnInit {
+export class IssuesComponent implements OnInit, OnDestroy {
   title = "Issue Tracker";
 
   apiErrorString: string;
@@ -55,5 +55,9 @@ export class IssuesComponent implements OnInit {
     this.isLoading = true;
     this.spinner.show();
     this.service.getIssues();
+  }
+
+  ngOnDestroy(): void {
+    this.service.issuesSubscription.unsubscribe();
   }
 }

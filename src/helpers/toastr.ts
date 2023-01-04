@@ -9,14 +9,11 @@ export class ToastrHelper {
 
   toaster = (text: string, type: string) => {
     //@ts-ignore
-    this.toastr[type]("", text, {
-      positionClass: "toast-top-right",
-    });
+    this.toastr[type]("", text);
   };
 
   notificationToast = (info: jsonObj) => {
     this.toastr.info("", "", {
-      positionClass: "toast-bottom-right",
       toastComponent: NotificationComponent,
       payload: info,
     });

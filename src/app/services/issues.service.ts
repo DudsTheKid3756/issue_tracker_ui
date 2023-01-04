@@ -5,7 +5,7 @@ import { HttpHelper } from "../../helpers/http";
 import { HttpResponse } from "@angular/common/http";
 import { Issue } from "src/models/issue";
 import { NgxSpinnerService } from "ngx-spinner";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
 import { ToastrHelper } from "../../helpers/toastr";
 
 @Injectable()
@@ -19,6 +19,7 @@ export class IssuesService {
   path: string;
   fullPath: string;
   apiErrorString: string;
+  issuesSubscription: Subscription = new Subscription();
 
   constructor(
     private storage: Storage,
@@ -62,43 +63,53 @@ export class IssuesService {
   };
 
   getIssues = () => {
-    return this.httpHelper.httpHelper(this.fullPath, "get").subscribe({
-      next: (response: HttpResponse<Issue[]>) => {
-        if (!response.ok) {
-          throw new Error(this.apiErrorString);
-        }
-        setTimeout(() => {
-          const _body = response.body!;          
-          this.setComponentIssues(_body);
-          this.setComponentApiError(false);
-          this.setComponentIsLoading(false);
-          this.spinner.hide();
-        }, 3000);
-      },
-      error: (err: any) => {
-        this.setComponentApiError(true);
-        this.setComponentIsLoading(false);
-
-        this.componentApiError
-          ? this.toastr.toaster(this.apiErrorString, "error")
-          : null;
-        this.spinner.hide();
-        console.error(err);
-      },
-    });
-  };
-
-  deleteIssue = (id: number) => {
-    return this.httpHelper
-      .httpHelper(`${this.fullPath}/${id}`, "delete")
-      .subscribe({
-        next: (response: HttpResponse<Issue>) => {
+    this.issuesSubscription = this.httpHelper
+      .httpHelper(this.fullPath, "get")
+      .subscribe(
+        (response: HttpResponse<Issue[]>) => {
           if (!response.ok) {
             throw new Error(this.apiErrorString);
           }
-          this.getIssues();
+          setTimeout(() => {
+            const _body = response.body!;
+            this.setComponentIssues(_body);
+            this.setComponentApiError(false);
+            this.setComponentIsLoading(false);
+            this.spinner.hide();
+          }, 3000);
         },
-        error: (err: any) => console.error(err),
-      });
+        (err: any) => {
+          this.setComponentApiError(true);
+          this.setComponentIsLoading(false);
+          this.componentApiError
+            ? this.toastr.toaster(this.apiErrorString, "error")
+            : null;
+          this.spinner.hide();
+          console.error(err);
+        },
+        () =>
+          setTimeout(
+            () =>
+              this.toastr.toaster("GET issues request completed", "success"),
+            3500
+          )
+      );
+  };
+
+  deleteIssue = (id: number) => {
+    this.issuesSubscription = this.httpHelper
+      .httpHelper(`${this.fullPath}/${id}`, "delete")
+      .subscribe(
+        (response: HttpResponse<Issue>) => {
+          if (!response.ok) {
+            throw new Error(this.apiErrorString);
+          }
+          this.setComponentIssues(
+            this.componentIssues.value.filter((value) => value.id != id)
+          );
+        },
+        (err: any) => console.error(err),
+        () => this.toastr.toaster("Issue deleted", "success")
+      );
   };
 }

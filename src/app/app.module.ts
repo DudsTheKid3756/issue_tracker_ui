@@ -41,6 +41,7 @@ const routes = [
     NgxSpinnerModule,
     NgxContextModule,
     ToastrModule.forRoot({
+      positionClass: "toast-bottom-right",
       timeOut: 3000,
       autoDismiss: false,
       progressBar: true,
