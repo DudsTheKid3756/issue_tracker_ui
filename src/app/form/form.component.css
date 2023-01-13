@@ -1,3 +1,26 @@
+.buttonDiv {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.cancel {
+  background-color: rgb(186, 14, 14);
+  border-color: black;
+}
+
+.cancel:hover {
+  background-color: rgb(116, 6, 6);
+}
+
+.checkboxInput1 {
+  display: inline-block;
+}
+
+.checkboxInput2 {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
 .errorBase {
   color: red;
   margin-left: 10px;
@@ -11,8 +34,17 @@
   display: inline;
 }
 
-.formLabel {
-  margin-left: 5px;
+.formComponent {
+  display: inline;
+}
+
+.formContainer {
+  display: inline-block;
+  width: 75%;
+}
+
+.formHeader {
+  margin: 5px;
 }
 
 .formInput {
@@ -29,8 +61,69 @@
   border: 3px solid #555;
 }
 
+.formInput[type="date"] {
+  margin-bottom: 10px;
+}
+
+.formInput[type="time"] {
+  margin-bottom: 5px;
+}
+
+.formLabel {
+  margin-left: 5px;
+}
+
+.icon {
+  cursor: pointer;
+  display: inline;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.label {
+  margin-left: 5px;
+}
+
 .normErr {
   display: inline;
+}
+
+.picker {
+  display: block;
+}
+
+.pickerContainer {
+  left: 52%;
+  bottom: 73%;
+  position: fixed;
+  display: inline;
+}
+
+.reminderContainer {
+  display: inline-block;
+  border: 1px solid black;
+  padding: 0px 5px 5px 5px;
+  margin-top: 5px;
+  width: 65%;
+}
+
+.reminderInput {
+  padding: 1px;
+  width: 75%;
+}
+
+select.formInput {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.submit {
+  background-color: rgb(15, 174, 15);
+  border-color: black;
+}
+
+.submit:hover {
+  background-color: rgb(6, 78, 6);
 }
 
 .textAreaErrBorder {
@@ -43,4 +136,15 @@
   margin-top: 0px;
   position: absolute;
   word-break: break-all;
+}
+
+.textInputs {
+  width: 150%;
+}
+
+.x {
+  cursor: pointer;
+  display: inline;
+  margin-left: 5px;
+  vertical-align: middle;
 }
